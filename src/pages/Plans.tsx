@@ -150,7 +150,7 @@ function PlansInner() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Plans</h1>
+          <h1 className="font-display text-2xl font-bold tracking-tight">Plans</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Start from a template or build a routine from scratch.
           </p>

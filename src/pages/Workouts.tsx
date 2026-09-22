@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/AppShell";
 import { LogWorkoutDialog } from "@/components/LogWorkoutDialog";
+import { WorkoutPlayer } from "@/components/WorkoutPlayer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { api } from "@/convex/_generated/api";
 import type { Doc } from "@/convex/_generated/dataModel";
-import { friendlyDate, formatMinutes } from "@/lib/fitness";
+import { CATEGORY_ACCENT, friendlyDate, formatMinutes } from "@/lib/fitness";
 import { useMutation, useQuery } from "convex/react";
 import { Dumbbell, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -46,12 +47,15 @@ function WorkoutsInner() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Workouts</h1>
+          <h1 className="font-display text-2xl font-bold tracking-tight">Workouts</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Every session you&apos;ve logged, newest first.
           </p>
         </div>
-        <LogWorkoutDialog />
+        <div className="flex items-center gap-2">
+          <LogWorkoutDialog />
+          <WorkoutPlayer />
+        </div>
       </header>
 
       {/* Filters */}
@@ -133,7 +137,7 @@ function WorkoutsInner() {
                             </span>
                             <Badge
                               variant="outline"
-                              className="hidden capitalize sm:inline-flex"
+                              className={`hidden capitalize sm:inline-flex ${CATEGORY_ACCENT[w.category]}`}
                             >
                               {w.category}
                             </Badge>

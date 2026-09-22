@@ -39,9 +39,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-8">
             <NavLink
               to="/dashboard"
-              className="text-sm font-semibold tracking-tight"
+              className="font-display text-base font-semibold tracking-tight"
             >
-              FitTrack<span className="text-muted-foreground">Hub</span>
+              FitTrack<span className="text-primary">Hub</span>
             </NavLink>
             <nav className="flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
@@ -52,7 +52,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                     cn(
                       "rounded-md px-3 py-1.5 text-sm transition-colors",
                       isActive
-                        ? "bg-muted font-medium text-foreground"
+                        ? "bg-primary/10 font-medium text-primary"
                         : "text-muted-foreground hover:text-foreground",
                     )
                   }
@@ -97,7 +97,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 cn(
                   "flex flex-col items-center gap-1 py-2.5 text-[10px] transition-colors",
                   isActive
-                    ? "text-foreground"
+                    ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
                 )
               }

@@ -15,6 +15,7 @@ import {
   EXERCISES,
   type Exercise,
 } from "@/lib/exercises";
+import { CATEGORY_ACCENT } from "@/lib/fitness";
 import { Info } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -32,7 +33,7 @@ function LibraryInner() {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <header>
-        <h1 className="text-2xl font-semibold tracking-tight">
+        <h1 className="font-display text-2xl font-bold tracking-tight">
           Exercise library
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -65,7 +66,10 @@ function LibraryInner() {
                 <h2 className="text-sm font-medium leading-snug">
                   {exercise.name}
                 </h2>
-                <Badge variant="outline" className="capitalize shrink-0">
+                <Badge
+                  variant="outline"
+                  className={`shrink-0 capitalize ${CATEGORY_ACCENT[exercise.category]}`}
+                >
                   {exercise.category}
                 </Badge>
               </div>
@@ -101,7 +105,10 @@ function LibraryInner() {
               <DialogHeader>
                 <div className="flex items-center gap-2">
                   <DialogTitle>{selected.name}</DialogTitle>
-                  <Badge variant="outline" className="capitalize">
+                  <Badge
+                    variant="outline"
+                    className={`capitalize ${CATEGORY_ACCENT[selected.category]}`}
+                  >
                     {selected.category}
                   </Badge>
                 </div>

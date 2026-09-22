@@ -13,9 +13,9 @@ import { Activity, Flame, Timer, TrendingUp } from "lucide-react";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  strength: "var(--chart-1)",
+  strength: "var(--chart-4)",
   cardio: "var(--chart-3)",
-  flexibility: "var(--chart-4)",
+  flexibility: "var(--chart-2)",
 };
 
 export default function Progress() {
@@ -35,7 +35,7 @@ export default function Progress() {
     <AppShell>
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <header>
-          <h1 className="text-2xl font-semibold tracking-tight">Progress</h1>
+          <h1 className="font-display text-2xl font-bold tracking-tight">Progress</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Your last 30 days of training.
           </p>

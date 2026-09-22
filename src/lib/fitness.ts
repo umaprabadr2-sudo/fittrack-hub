@@ -1,6 +1,13 @@
 export type WorkoutCategory = "strength" | "cardio" | "flexibility";
 export type Intensity = "low" | "moderate" | "high";
 
+/** Vibrant badge classes per workout category. */
+export const CATEGORY_ACCENT: Record<WorkoutCategory, string> = {
+  strength: "border-violet-500/40 bg-violet-500/10 text-violet-300",
+  cardio: "border-orange-500/40 bg-orange-500/10 text-orange-300",
+  flexibility: "border-cyan-500/40 bg-cyan-500/10 text-cyan-300",
+};
+
 /** MET values mirroring the server-side estimator (70 kg reference weight). */
 const MET: Record<WorkoutCategory, Record<Intensity, number>> = {
   strength: { low: 3.5, moderate: 5.0, high: 6.5 },

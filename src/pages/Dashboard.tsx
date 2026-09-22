@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/AppShell";
 import { LogWorkoutDialog } from "@/components/LogWorkoutDialog";
+import { WorkoutPlayer } from "@/components/WorkoutPlayer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +14,14 @@ import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { useAuth } from "@/hooks/use-auth";
 import {
+  CATEGORY_ACCENT,
   friendlyDate,
   formatMinutes,
   shortDayLabel,
   todayIso,
 } from "@/lib/fitness";
 import { useMutation, useQuery } from "convex/react";
-import { Check, Flame, Footprints, HeartPulse, Timer } from "lucide-react";
+import { Check, Flame, Footprints, HeartPulse, Play } from "lucide-react";
 import { useState } from "react";
 import {
   Bar,
@@ -61,23 +63,24 @@ function DashboardInner() {
       <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm text-muted-foreground">{friendlyDate(today)}</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+          <h1 className="font-display mt-1 text-2xl font-bold tracking-tight">
             {user?.name ? `Welcome back, ${user.name}` : "Welcome back"}
           </h1>
         </div>
-        <LogWorkoutDialog />
+        <div className="flex items-center gap-2">
+          <LogWorkoutDialog />
+          <WorkoutPlayer />
+        </div>
       </header>
 
       {/* Metric row */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Footprints className="size-3.5" />
-                Steps today
-              </span>
-            </div>
+            <span className="flex items-center gap-1.5 text-xs text-cyan-300">
+              <Footprints className="size-3.5" />
+              Steps today
+            </span>
             <p className="tabular mt-2 text-3xl font-semibold tracking-tight">
               {todayMetrics?.steps !== undefined
                 ? todayMetrics.steps.toLocaleString()
@@ -88,7 +91,7 @@ function DashboardInner() {
 
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5 text-xs text-rose-300">
               <HeartPulse className="size-3.5" />
               Resting HR
             </span>
@@ -111,9 +114,9 @@ function DashboardInner() {
 
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5 text-xs text-orange-300">
               <Flame className="size-3.5" />
-              Today
+              Calories today
             </span>
             <p className="tabular mt-2 text-3xl font-semibold tracking-tight">
               {todayCalories}
@@ -126,8 +129,8 @@ function DashboardInner() {
 
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Timer className="size-3.5" />
+            <span className="flex items-center gap-1.5 text-xs text-primary">
+              <Play className="size-3.5" />
               This week
             </span>
             <p className="tabular mt-2 text-3xl font-semibold tracking-tight">
@@ -251,14 +254,17 @@ function DashboardInner() {
                         <span className="capitalize">{w.intensity}</span>
                       </p>
                     </div>
-                    <Badge variant="outline" className="capitalize">
+                    <Badge
+                      variant="outline"
+                      className={`capitalize ${CATEGORY_ACCENT[w.category]}`}
+                    >
                       {w.category}
                     </Badge>
                   </div>
                 ))
               ) : (
                 <p className="text-sm text-muted-foreground">
-                  Use “Log workout” to record your first session today.
+                  Hit “Start session” to train with the live timer.
                 </p>
               )}
             </CardContent>
