@@ -41,7 +41,6 @@ export const recentMetrics = query({
     const userId = await getAuthUserId(ctx);
     if (userId === null) return [];
     const windowDays = days ?? 14;
-    const since = isoDateDaysAgo(windowDays - 1);
     const rows = await ctx.db
       .query("dailyMetrics")
       .withIndex("by_user", (q) => q.eq("userId", userId))

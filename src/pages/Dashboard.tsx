@@ -20,7 +20,7 @@ import {
 } from "@/lib/fitness";
 import { useMutation, useQuery } from "convex/react";
 import { Check, Flame, Footprints, HeartPulse, Timer } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Bar,
   BarChart,
@@ -43,33 +43,7 @@ function DashboardInner() {
 
   const upsertMetrics = useMutation(api.metrics.upsertDailyMetrics);
 
-  const [steps, setSteps] = useState("");
-  const [rhr, setRhr] = useState("");
   const [savingMetrics, setSavingMetrics] = useState(false);
-
-  useEffect(() => {
-    if (todayMetrics !== undefined) {
-      setSteps(todayMetrics?.steps !== undefined ? String(todayMetrics.steps) : "");
-      setRhr(
-        todayMetrics?.restingHeartRate !== undefined
-          ? String(todayMetrics.restingHeartRate)
-          : "",
-      );
-    }
-  }, [todayMetrics]);
-
-  const saveMetrics = async () => {
-    setSavingMetrics(true);
-    try {
-      await upsertMetrics({
-        date: today,
-        steps: steps ? Number(steps) : undefined,
-        restingHeartRate: rhr ? Number(rhr) : undefined,
-      });
-    } finally {
-      setSavingMetrics(false);
-    }
-  };
 
   const chartData = (metrics ?? []).map((m) => ({
     ...m,
@@ -234,53 +208,23 @@ function DashboardInner() {
 
         {/* Today's metrics input + workouts */}
         <div className="flex flex-col gap-6">
-          <Card className="shadow-none">
-            <CardHeader>
-              <CardTitle className="text-base">Today&apos;s metrics</CardTitle>
-              <CardDescription>Steps and resting heart rate</CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-3">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="grid gap-1.5">
-                  <label
-                    htmlFor="steps"
-                    className="text-xs text-muted-foreground"
-                  >
-                    Steps
-                  </label>
-                  <Input
-                    id="steps"
-                    inputMode="numeric"
-                    placeholder="8000"
-                    value={steps}
-                    onChange={(e) => setSteps(e.target.value)}
-                  />
-                </div>
-                <div className="grid gap-1.5">
-                  <label htmlFor="rhr" className="text-xs text-muted-foreground">
-                    Heart rate
-                  </label>
-                  <Input
-                    id="rhr"
-                    inputMode="numeric"
-                    placeholder="62"
-                    value={rhr}
-                    onChange={(e) => setRhr(e.target.value)}
-                  />
-                </div>
-              </div>
-              <Button
-                size="sm"
-                variant="outline"
-                className="gap-1.5"
-                disabled={savingMetrics}
-                onClick={saveMetrics}
-              >
-                <Check className="size-3.5" />
-                Save
-              </Button>
-            </CardContent>
-          </Card>
+          <TodayMetricsCard
+            key={today}
+            saved={todayMetrics}
+            onSave={async (steps, rhr) => {
+              setSavingMetrics(true);
+              try {
+                await upsertMetrics({
+                  date: today,
+                  steps: steps ? Number(steps) : undefined,
+                  restingHeartRate: rhr ? Number(rhr) : undefined,
+                });
+              } finally {
+                setSavingMetrics(false);
+              }
+            }}
+            saving={savingMetrics}
+          />
 
           <Card className="shadow-none">
             <CardHeader>
@@ -322,6 +266,78 @@ function DashboardInner() {
         </div>
       </div>
     </div>
+  );
+}
+
+interface SavedMetrics {
+  steps?: number;
+  restingHeartRate?: number;
+}
+
+function TodayMetricsCard({
+  saved,
+  onSave,
+  saving,
+}: {
+  saved: SavedMetrics | undefined | null;
+  onSave: (steps: string, rhr: string) => Promise<void>;
+  saving: boolean;
+}) {
+  const [steps, setSteps] = useState(
+    saved?.steps !== undefined ? String(saved.steps) : "",
+  );
+  const [rhr, setRhr] = useState(
+    saved?.restingHeartRate !== undefined ? String(saved.restingHeartRate) : "",
+  );
+
+  const handleSave = async () => {
+    await onSave(steps, rhr);
+  };
+
+  return (
+    <Card className="shadow-none">
+      <CardHeader>
+        <CardTitle className="text-base">Today&apos;s metrics</CardTitle>
+        <CardDescription>Steps and resting heart rate</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        <div className="grid grid-cols-2 gap-3">
+          <div className="grid gap-1.5">
+            <label htmlFor="steps" className="text-xs text-muted-foreground">
+              Steps
+            </label>
+            <Input
+              id="steps"
+              inputMode="numeric"
+              placeholder="8000"
+              value={steps}
+              onChange={(e) => setSteps(e.target.value)}
+            />
+          </div>
+          <div className="grid gap-1.5">
+            <label htmlFor="rhr" className="text-xs text-muted-foreground">
+              Heart rate
+            </label>
+            <Input
+              inputMode="numeric"
+              placeholder="62"
+              value={rhr}
+              onChange={(e) => setRhr(e.target.value)}
+            />
+          </div>
+        </div>
+        <Button
+          size="sm"
+          variant="outline"
+          className="gap-1.5"
+          disabled={saving}
+          onClick={handleSave}
+        >
+          <Check className="size-3.5" />
+          Save
+        </Button>
+  </CardContent>
+    </Card>
   );
 }
 
