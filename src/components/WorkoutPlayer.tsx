@@ -407,7 +407,7 @@ export function WorkoutPlayer({ children }: { children?: ReactNode }) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-sm text-orange-300">
+              <div className="flex items-center gap-2 rounded-full border border-orange-200 bg-orange-100 px-4 py-1.5 text-sm text-orange-700">
                 <motion.span
                   animate={{ scale: [1, 1.25, 1] }}
                   transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
@@ -415,7 +415,7 @@ export function WorkoutPlayer({ children }: { children?: ReactNode }) {
                   <Flame className="size-4" />
                 </motion.span>
                 <span className="tabular font-semibold">{kcalBurned}</span>
-                <span className="text-orange-300/80">kcal burned</span>
+                <span className="text-orange-600/80">kcal burned</span>
               </div>
             </div>
 

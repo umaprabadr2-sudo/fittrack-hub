@@ -16,48 +16,48 @@ import {
 const FEATURES = [
   {
     icon: HeartPulse,
-    color: "text-rose-300",
-    chip: "bg-rose-500/15 border-rose-500/30",
+    color: "text-rose-600",
+    chip: "bg-rose-100 border-rose-200",
     title: "Health metrics",
     description:
       "Track daily steps and resting heart rate, and watch your trends light up over time.",
   },
   {
     icon: Dumbbell,
-    color: "text-violet-300",
-    chip: "bg-violet-500/15 border-violet-500/30",
+    color: "text-violet-600",
+    chip: "bg-violet-100 border-violet-200",
     title: "Live workout sessions",
     description:
       "Start a session and train along with animated exercises, a running timer, and live calories.",
   },
   {
     icon: ClipboardList,
-    color: "text-cyan-300",
-    chip: "bg-cyan-500/15 border-cyan-500/30",
+    color: "text-cyan-600",
+    chip: "bg-cyan-100 border-cyan-200",
     title: "Custom plans",
     description:
       "Start from a template or build a routine from scratch, day by day.",
   },
   {
     icon: LineChart,
-    color: "text-lime-300",
-    chip: "bg-lime-500/15 border-lime-500/30",
+    color: "text-emerald-600",
+    chip: "bg-emerald-100 border-emerald-200",
     title: "Progress insights",
     description:
       "Calories, minutes, and frequency charted in vibrant color so trends pop.",
   },
   {
     icon: Target,
-    color: "text-orange-300",
-    chip: "bg-orange-500/15 border-orange-500/30",
+    color: "text-orange-600",
+    chip: "bg-orange-100 border-orange-200",
     title: "Goals & milestones",
     description:
       "Set measurable targets and hit 25 / 50 / 75 / 100% milestones one by one.",
   },
   {
     icon: BookOpen,
-    color: "text-emerald-300",
-    chip: "bg-emerald-500/15 border-emerald-500/30",
+    color: "text-fuchsia-600",
+    chip: "bg-fuchsia-100 border-fuchsia-200",
     title: "Exercise library",
     description:
       "Form cues for every movement so you train correctly and safely.",
@@ -65,9 +65,9 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { icon: Flame, value: "45m", label: "median session", color: "text-orange-300" },
-  { icon: Activity, value: "6", label: "tracked metrics", color: "text-cyan-300" },
-  { icon: Dumbbell, value: "15+", label: "library exercises", color: "text-violet-300" },
+  { icon: Flame, value: "45m", label: "median session", color: "text-orange-600" },
+  { icon: Activity, value: "6", label: "tracked metrics", color: "text-cyan-600" },
+  { icon: Dumbbell, value: "15+", label: "library exercises", color: "text-violet-600" },
 ];
 
 function FloatingIcon({
@@ -113,21 +113,21 @@ export default function Landing() {
     >
       {/* Ambient gradient orbs */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
         style={{
           background:
             "radial-gradient(closest-side, var(--chart-1), transparent)",
         }}
       />
       <div
-        className="pointer-events-none absolute -left-40 top-1/3 h-[380px] w-[380px] rounded-full opacity-15 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-1/3 h-[380px] w-[380px] rounded-full opacity-20 blur-3xl"
         style={{
           background:
             "radial-gradient(closest-side, var(--chart-4), transparent)",
         }}
       />
       <div
-        className="pointer-events-none absolute -right-40 top-1/2 h-[380px] w-[380px] rounded-full opacity-15 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-1/2 h-[380px] w-[380px] rounded-full opacity-20 blur-3xl"
         style={{
           background:
             "radial-gradient(closest-side, var(--chart-2), transparent)",
@@ -156,25 +156,25 @@ export default function Landing() {
         <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-24 pt-24 text-center">
           <FloatingIcon
             icon={Dumbbell}
-            className="left-4 top-24 size-14 border-violet-500/40 bg-violet-500/15 text-violet-300"
+            className="left-4 top-24 size-14 border-violet-200 bg-white text-violet-600 shadow-lg shadow-violet-200"
             delay={0.3}
             duration={3.2}
           />
           <FloatingIcon
             icon={Flame}
-            className="right-10 top-32 size-14 border-orange-500/40 bg-orange-500/15 text-orange-300"
+            className="right-10 top-32 size-14 border-orange-200 bg-white text-orange-600 shadow-lg shadow-orange-200"
             delay={0.5}
             duration={2.7}
           />
           <FloatingIcon
             icon={HeartPulse}
-            className="left-16 bottom-10 size-14 border-rose-500/40 bg-rose-500/15 text-rose-300"
+            className="left-16 bottom-10 size-14 border-rose-200 bg-white text-rose-600 shadow-lg shadow-rose-200"
             delay={0.7}
             duration={3.6}
           />
           <FloatingIcon
             icon={Activity}
-            className="right-16 bottom-16 size-14 border-cyan-500/40 bg-cyan-500/15 text-cyan-300"
+            className="right-16 bottom-16 size-14 border-cyan-200 bg-white text-cyan-600 shadow-lg shadow-cyan-200"
             delay={0.9}
             duration={3}
           />
@@ -183,7 +183,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-primary"
+            className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-primary"
           >
             No noise. Just momentum.
           </motion.p>
@@ -225,7 +225,7 @@ export default function Landing() {
               asChild
               size="lg"
               variant="outline"
-              className="h-12 border-primary/40 px-7 text-base text-primary hover:bg-primary/10 hover:text-primary"
+              className="h-12 border-primary/40 px-7 text-base text-primary hover:bg-primary/5 hover:text-primary"
             >
               <a href="/auth">
                 Continue as guest
@@ -272,7 +272,7 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="group rounded-xl border bg-card/70 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_12px_40px_-16px_var(--primary)]"
+                className="group rounded-xl border bg-card/70 p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_12px_36px_-14px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
               >
                 <span
                   className={`inline-flex size-11 items-center justify-center rounded-lg border ${chip}`}
@@ -292,7 +292,7 @@ export default function Landing() {
         <section className="relative z-10 border-t">
           <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center overflow-hidden px-6 py-24 text-center">
             <div
-              className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+              className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full opacity-25 blur-3xl"
               style={{
                 background:
                   "radial-gradient(closest-side, var(--chart-1), transparent)",

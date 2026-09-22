@@ -1,11 +1,11 @@
 export type WorkoutCategory = "strength" | "cardio" | "flexibility";
 export type Intensity = "low" | "moderate" | "high";
 
-/** Vibrant badge classes per workout category. */
+/** Vibrant badge classes per workout category (light theme). */
 export const CATEGORY_ACCENT: Record<WorkoutCategory, string> = {
-  strength: "border-violet-500/40 bg-violet-500/10 text-violet-300",
-  cardio: "border-orange-500/40 bg-orange-500/10 text-orange-300",
-  flexibility: "border-cyan-500/40 bg-cyan-500/10 text-cyan-300",
+  strength: "border-violet-200 bg-violet-100 text-violet-700",
+  cardio: "border-orange-200 bg-orange-100 text-orange-700",
+  flexibility: "border-cyan-200 bg-cyan-100 text-cyan-700",
 };
 
 /** MET values mirroring the server-side estimator (70 kg reference weight). */

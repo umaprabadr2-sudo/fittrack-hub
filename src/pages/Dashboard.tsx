@@ -77,7 +77,7 @@ function DashboardInner() {
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-cyan-300">
+            <span className="flex items-center gap-1.5 text-xs font-medium text-cyan-600">
               <Footprints className="size-3.5" />
               Steps today
             </span>
@@ -91,7 +91,7 @@ function DashboardInner() {
 
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-rose-300">
+            <span className="flex items-center gap-1.5 text-xs font-medium text-rose-600">
               <HeartPulse className="size-3.5" />
               Resting HR
             </span>
@@ -114,7 +114,7 @@ function DashboardInner() {
 
         <Card className="shadow-none">
           <CardContent className="pt-6">
-            <span className="flex items-center gap-1.5 text-xs text-orange-300">
+            <span className="flex items-center gap-1.5 text-xs font-medium text-orange-600">
               <Flame className="size-3.5" />
               Calories today
             </span>
