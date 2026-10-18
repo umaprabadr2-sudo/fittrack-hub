@@ -24,6 +24,7 @@ https://workout.freebuff.app/
 
 ## Team Members
 - R.Swasthika
+  (https://github.com/umaprabadr2-sudo)
 - S.Sujith
 
 ## How to Run
