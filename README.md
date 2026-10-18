@@ -26,7 +26,6 @@ https://workout.freebuff.app/
 - R.Swasthika
   (https://github.com/umaprabadr2-sudo)
 - S.Sujith
-  (https://github.com/sujithsaravanan07-dev)
 
 ## How to Run
 1. Clone this repository
